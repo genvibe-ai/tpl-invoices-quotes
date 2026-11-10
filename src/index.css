@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Warm paper neutrals */
+  --color-paper: #f6f3ec;
+  --color-paper-2: #eeeae0;
+  --color-surface: #fffdf8;
+  --color-ink: #1a1917;
+  --color-ink-2: #4f4b43;
+  --color-ink-3: #736e63;
+  --color-line: #e6e0d3;
+  --color-line-strong: #d4ccbc;
+
+  /* Deep green accent */
+  --color-accent-50: #eef4ef;
+  --color-accent-100: #dae7dd;
+  --color-accent-200: #b5cfbc;
+  --color-accent-300: #8ab197;
+  --color-accent-400: #5b8e6d;
+  --color-accent-500: #36704c;
+  --color-accent-600: #245d3c;
+  --color-accent-700: #1a4d31;
+  --color-accent-800: #133d26;
+  --color-accent-900: #0c2b1b;
+
+  /* Semantic */
+  --color-danger-50: #fbedea;
+  --color-danger-100: #f2d3cc;
+  --color-danger-600: #a83a2c;
+  --color-danger-700: #8c2e22;
+  --color-warning-50: #fbf3e1;
+  --color-warning-100: #f0dfb4;
+  --color-warning-600: #9a6a0c;
+  --color-warning-700: #7a5309;
+  --color-info-50: #edf1f7;
+  --color-info-100: #d4deeb;
+  --color-info-600: #3a5f8a;
+  --color-info-700: #2d4b6e;
+
+  --animate-fade-up: fade-up 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade-in: fade-in 0.2s ease-out both;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+  }
+  ::selection {
+    background: var(--color-accent-100);
+    color: var(--color-accent-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent-500);
+    outline-offset: 2px;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+}
+
+#print-root {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  #root {
+    display: none !important;
+  }
+  #print-root {
+    display: block;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
